@@ -3,6 +3,7 @@ The goal is to get the top news stories from HackerNews (my favorite news source
 Made by Half28 on GitHub (Half28/News-Story-Web-Scraper
 Feel free to redist, edit, etc at your whim; I just ask that you give me credit where it's due.
 For this project, you'll need node.js, npm, puppeteer, fs, and chalk. More on this can be found in the README file on Github.
+Updated 11-7-20 (changed so it appends the news stories to news.json instead of overwriting them)
 */
 
 
@@ -51,7 +52,7 @@ const success = chalk.keyword("green");
         });
 
         //Write array to a .json, handling errors as necessary (unhandled promise rejections are a no-no with Puppeteer, thus the try{} catch{})
-        fs.writeFile("news.json", JSON.stringify(content), function(err) {
+        fs.appendFileSync("news.json", JSON.stringify(content), function(err) {
             if (err) throw err;
           });
 
